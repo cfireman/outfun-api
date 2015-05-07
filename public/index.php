@@ -1,6 +1,5 @@
 <?php
 
-die('this is outfun-api');
 
 define("APP_PATH",  realpath(dirname(__FILE__) . '/../')); /* 指向public的上一级 */
 
