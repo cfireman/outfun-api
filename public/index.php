@@ -7,5 +7,5 @@ try{
     $app  = new Yaf_Application(APP_PATH . "/conf/application.ini");
     $app->run();
 }catch (Exception $ee){
-    echo $ee->getMessage();
+    var_dump($ee);
 }
