@@ -9,8 +9,17 @@ class MemberController extends Base_Controller_Abstract {
 
     public function addAction() {
 
-        pp(MemberModel::create()->select());
+//        pp(MemberModel::create()->select());
 
+        Msg::Succ();
+    }
+
+
+    public function registerAction(){
+        Msg::Succ();
+    }
+
+    public function loginAction(){
         Msg::Succ();
     }
 }
