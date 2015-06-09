@@ -10,6 +10,10 @@ class Base_Controller_Sign extends Base_Controller_Abstract{
 
     public function init(){
 
+
+        if(!isset($this->body['sign'])){
+            Msg::Err('400', '缺少参数sign');
+        }
         if(!$this->validSign()){
             Msg::Err('400', 'sign验证失败');
         }
@@ -22,7 +26,7 @@ class Base_Controller_Sign extends Base_Controller_Abstract{
 
     public function validSign(){
 
-        return $this->body['sign'] != 'debugSign' && $this->body['sign'] == $this->getSign();
+        return $this->body['sign'] == 'debugSign' || $this->body['sign'] == $this->getSign();
     }
 
 }

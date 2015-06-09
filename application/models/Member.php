@@ -10,6 +10,7 @@ class MemberModel extends Base_Model_Abstract{
     protected $dbname = 'outfun';
 
     public function get(){
-        return $this->db->select('outfun_member');
+        $where = array();
+        return $this->db->select('outfun_member', $where);
     }
 }

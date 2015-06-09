@@ -65,7 +65,7 @@ class Base_Controller_Abstract extends Yaf_Controller_Abstract{
     }
 
     private function getBody(){
-        $body = $this->getParams();echo 1;
+        $body = $this->getParams();
         return $body;
     }
 }

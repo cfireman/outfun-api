@@ -17,6 +17,12 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
 	}
 
 	public function _initPlugin(Yaf_Dispatcher $dispatcher) {
+        $items = Yaf_Registry::get("config");
+        if ($items['plugins']) {
+            foreach ($items['plugins'] as $key => $cls) {
+                $dispatcher->registerPlugin(new $cls());
+            }
+        }
 	}
 
 	public function _initSession(Yaf_Dispatcher $dispatcher) {
