@@ -7,6 +7,9 @@
  */
 class MemberModel extends Base_Model_Abstract{
 
-    protected $dbname = 'dilicms';
+    protected $dbname = 'outfun';
 
+    public function get(){
+        return $this->db->select('outfun_member');
+    }
 }

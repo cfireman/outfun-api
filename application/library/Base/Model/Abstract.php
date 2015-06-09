@@ -64,8 +64,5 @@ class Base_Model_Abstract {
         return Yaf_Registry::get($key);
     }
 
-    public function select(){
-        return $this->db->select('dili_admins');
-    }
 
 }

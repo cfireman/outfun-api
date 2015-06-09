@@ -63,5 +63,9 @@ class Base_Controller_Abstract extends Yaf_Controller_Abstract{
         
         throw new Exception("Method " . get_called_class() . ".{$name} is not defined.");
     }
-    
+
+    private function getBody(){
+        $body = $this->getParams();echo 1;
+        return $body;
+    }
 }

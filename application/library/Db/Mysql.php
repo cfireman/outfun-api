@@ -7,7 +7,7 @@
 class Db_Mysql
 {
     protected static $instances = array();
-    protected static $default = array('host' => 'localhost', 'port' => '3306', 'database' => 'dilicms', 'user' => 'root', 'password' => 'root');
+    protected static $default = array('host' => 'localhost', 'port' => '3306', 'database' => 'default', 'user' => 'root', 'password' => 'root');
     
     protected $db;
     protected $connected = false;
@@ -39,7 +39,7 @@ class Db_Mysql
     public static function getConfig($name) {
         $config = Yaf_Registry::get("config");
         $items = $config['db'];
-        return $items && isset($items['servers'][$name]) ? $items['servers'][$name] : self::$default;
+        return $items && $items[$name] ? $items[$name] : self::$default;
     }
     
     /**
