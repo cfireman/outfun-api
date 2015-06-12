@@ -7,10 +7,12 @@
  */
 class MemberModel extends Base_Model_Abstract{
 
-    protected $dbname = 'outfun';
+//    protected $dbname = 'outfun';
+    protected $tblname = 'member';
 
     public function get(){
         $where = array();
-        return $this->db->select('outfun_member', $where);
+        return $this->db->select($this->tblname, $where);
     }
+
 }

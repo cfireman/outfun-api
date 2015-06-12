@@ -8,6 +8,7 @@
 class Base_Model_Abstract {
 
     protected $dbname;
+    protected $tblname;
     protected static $instances = array();
 
     public static function create() {
@@ -16,6 +17,12 @@ class Base_Model_Abstract {
             self::$instances[$className] = new $className();
         }
         return self::$instances[$className];
+    }
+
+    public function __construct(){
+        $config         = Yaf_Registry::get("config");
+        $this->dbname   = $config['used_db'];
+        $this->tblname  = $config['db'][$this->dbname]['prefix'] .'_'. lcfirst(str_replace('Model', '', get_called_class()));
     }
 
     /**

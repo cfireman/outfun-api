@@ -20,8 +20,20 @@ class Base_Controller_Sign extends Base_Controller_Abstract{
     }
 
     public function getSign(){
+        $req = $this->body;
 
-        return 'xxxxxxxxxxxx';
+        ksort($req);
+        unset($req['sign']);
+
+        $device_key = 'cfireman';
+        $str = $device_key;
+        foreach($req as $k=>$v){
+            if(!Util_Valid::isEmptyStr($v)){
+                $str .=$k.$v;
+            }
+        }
+        $m = strtoupper(md5($str));
+        return $m;
     }
 
     public function validSign(){

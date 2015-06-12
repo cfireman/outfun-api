@@ -64,8 +64,21 @@ class Base_Controller_Abstract extends Yaf_Controller_Abstract{
         throw new Exception("Method " . get_called_class() . ".{$name} is not defined.");
     }
 
+    /**
+     * 获取访问参数，包括GET和POST
+     * @return mixed
+     */
     private function getBody(){
         $body = $this->getParams();
         return $body;
+    }
+
+    private function getConfig(){
+        $config = Yaf_Registry::get("config");
+        if($name == ''){
+            return $config;
+        }else {
+            return $config[$name];
+        }
     }
 }
