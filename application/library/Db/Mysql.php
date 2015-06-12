@@ -112,7 +112,9 @@ class Db_Mysql
     }
 
     public function selectBySql($sql) {
+        $this->connect();
         $data = array();
+
         $this->sql = $sql;
         $sth = $this->db->prepare($this->sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->execute();

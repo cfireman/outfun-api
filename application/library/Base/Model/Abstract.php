@@ -71,5 +71,24 @@ class Base_Model_Abstract {
         return Yaf_Registry::get($key);
     }
 
+    public function getList($where = array()){
+        return $this->db->select($this->tblname, $where);
+    }
 
+    public function getFirst($where = array()){
+        return $this->db->get($this->tblname, $where);
+    }
+
+
+    public function add($data){
+        return $this->db->insert($this->tblname, $data);
+    }
+
+    public function update($data, $where){
+        return $this->db->update($this->tblname, $data, $where);
+    }
+
+    public function del($where){
+        return $this->db->delete($this->tblname, $where);
+    }
 }

@@ -28,7 +28,7 @@ class Base_Controller_Sign extends Base_Controller_Abstract{
         $device_key = 'cfireman';
         $str = $device_key;
         foreach($req as $k=>$v){
-            if(!Util_Valid::isEmptyStr($v)){
+            if(!Util_Valid::emptyStr($v)){
                 $str .=$k.$v;
             }
         }
