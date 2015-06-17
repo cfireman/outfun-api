@@ -111,13 +111,13 @@ class Db_Mysql
         return $data;
     }
 
-    public function selectBySql($sql) {
+    public function selectBySql($sql, $param = array()) {
         $this->connect();
         $data = array();
 
         $this->sql = $sql;
         $sth = $this->db->prepare($this->sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        $sth->execute();
+        $sth->execute($param);
         while ($row = $sth->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT)) {
             $this->appendValue($row, $data);
         }
@@ -329,7 +329,7 @@ class Db_Mysql
      *      'name|like'=>array('1%','%2%'),
      *      );
      */
-    private function where($cond, &$params = array(), $op = 'AND') {
+    public function where($cond, &$params = array(), $op = 'AND') {
         if (empty($cond)) return '';
         if (!is_array($cond)) return $cond;
 

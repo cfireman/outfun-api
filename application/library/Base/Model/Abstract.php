@@ -9,6 +9,7 @@ class Base_Model_Abstract {
 
     protected $dbname;
     protected $tblname;
+    protected $prefix;
     protected static $instances = array();
 
     public static function create() {
@@ -22,7 +23,8 @@ class Base_Model_Abstract {
     public function __construct(){
         $config         = Yaf_Registry::get("config");
         $this->dbname   = $config['used_db'];
-        $this->tblname  = $config['db'][$this->dbname]['prefix'] .'_'. lcfirst(str_replace('Model', '', get_called_class()));
+        $this->prefix   = $config['db'][$this->dbname]['prefix'];
+        $this->tblname  = $this->prefix .'_'. lcfirst(str_replace('Model', '', get_called_class()));
     }
 
     /**
@@ -71,8 +73,14 @@ class Base_Model_Abstract {
         return Yaf_Registry::get($key);
     }
 
-    public function getList($where = array()){
-        return $this->db->select($this->tblname, $where);
+    /**
+     * @param array $where
+     * @param array $order  array('add_time' => 'desc')
+     * @param string $limit '10,20'
+     * @return mixed
+     */
+    public function getList($where = array(), $order = array(), $limit = ''){
+        return $this->db->select($this->tblname, $where, '*' , $order, $limit);
     }
 
     public function getFirst($where = array()){
@@ -90,5 +98,13 @@ class Base_Model_Abstract {
 
     public function del($where){
         return $this->db->delete($this->tblname, $where);
+    }
+
+    public function total($where){
+        $res = $this->db->get($this->tblname, $where, 'count(*) as total');
+        if($res){
+            return intval($res['total']);
+        }
+        return 0;
     }
 }

@@ -73,7 +73,7 @@ class Base_Controller_Abstract extends Yaf_Controller_Abstract{
         return $body;
     }
 
-    private function getConfig(){
+    public function getConfig($name = ''){
         $config = Yaf_Registry::get("config");
         if($name == ''){
             return $config;
